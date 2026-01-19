@@ -284,11 +284,11 @@
         "rev": "819388c5546548016b0dab9a72a42aa5a40bf35d",
         "revCount": 691,
         "type": "git",
-        "url": "ssh://git@codeberg.org/andyg/leap.nvim"
+        "url": "http://codeberg.org/andyg/leap.nvim"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@codeberg.org/andyg/leap.nvim"
+        "url": "http://codeberg.org/andyg/leap.nvim"
       }
     },
     "luvit-meta": {
@@ -521,11 +521,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1768741782,
-        "narHash": "sha256-zseFKbvy7z+LfKzkayfs78DgiszRE6ZR0TG2nEgbqeE=",
+        "lastModified": 1768825864,
+        "narHash": "sha256-BNAt896/UdGtF7w4LNOaFQJfsJfX4SL2h+4vwteGD+A=",
         "ref": "refs/heads/main",
-        "rev": "5babcba746a82258f9fbc9ae64d1b7472f08be2e",
-        "revCount": 83,
+        "rev": "7e381af437e1d15d98482ba6372a957390d7166a",
+        "revCount": 84,
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
       },
