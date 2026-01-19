@@ -66,6 +66,7 @@
                 fzf
                 fd
                 direnv
+                starship
               ])
               ++ [
                 inputs.vt-nvim.packages.${system}.default

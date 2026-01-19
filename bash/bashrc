@@ -6,3 +6,5 @@ shopt -s histappend
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(direnv hook bash)"
+
+alias nix="nix -L"
