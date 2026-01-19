@@ -1,0 +1,25 @@
+[init]
+  defaultBranch = "main"
+
+[alias]
+  st = "status"
+  l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+  st = "status"
+  d = "diff --word-diff --word-diff-regex='\\w+|[^[:space:]]'"
+  b = "!git checkout $(git branch | tr -d ' *' | fzf)"
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = "ssh"
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[core]
+  askpass = ""
+
+[user]
+  email = "vincent@v-thomas.com"
+  name = "Vincent Thomas"
+  signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK2TanW6Iiz6qrI+BV8P3KGAfS+w/eKHBoOUiPyBFSal"
