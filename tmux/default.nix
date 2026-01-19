@@ -35,6 +35,7 @@ let
     set -g history-limit 5000
 
     bind f run-shell "tmux neww ${tmuxSessioniser}/bin/tmux-sessioniser"
+    bind g display-popup -w 85% -h 85% -E ${pkgs.lazygit}/bin/lazygit
 
     bind D detach
     bind d switch-client -t main
