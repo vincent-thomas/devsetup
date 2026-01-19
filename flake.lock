@@ -521,11 +521,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1768825864,
-        "narHash": "sha256-BNAt896/UdGtF7w4LNOaFQJfsJfX4SL2h+4vwteGD+A=",
+        "lastModified": 1768835562,
+        "narHash": "sha256-j8XOhHcyeT8ryyGkMn/UWM0TkjX5tt46lHUnOf+aVTU=",
         "ref": "refs/heads/main",
-        "rev": "7e381af437e1d15d98482ba6372a957390d7166a",
-        "revCount": 84,
+        "rev": "6eec8566678f65057895423bb009c69ed2d5ce27",
+        "revCount": 85,
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
       },
