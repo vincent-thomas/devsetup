@@ -307,19 +307,35 @@
         "type": "github"
       }
     },
-    "mini-nvim": {
+    "mini-hipatterns": {
       "flake": false,
       "locked": {
-        "lastModified": 1768573471,
-        "narHash": "sha256-WKsMLLWannZUywOpI/ZnlLCIAwNwr1UEGRLP31mDA54=",
-        "owner": "echasnovski",
-        "repo": "mini.nvim",
-        "rev": "c9d3bc2df3015d82eabe3d2d88dac1ef5746e9e8",
+        "lastModified": 1762511194,
+        "narHash": "sha256-FkpBYOKzDG3f3DttViAp7V9pj6EUppYKbZBah8L8Agk=",
+        "owner": "nvim-mini",
+        "repo": "mini.hipatterns",
+        "rev": "add8d8abad602787377ec5d81f6b248605828e0f",
         "type": "github"
       },
       "original": {
-        "owner": "echasnovski",
-        "repo": "mini.nvim",
+        "owner": "nvim-mini",
+        "repo": "mini.hipatterns",
+        "type": "github"
+      }
+    },
+    "mini-icons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767024095,
+        "narHash": "sha256-qxUA0Rq1wMqb/Vti+2D5BVEZEwttYH4+h/+pvV2pagE=",
+        "owner": "nvim-mini",
+        "repo": "mini.icons",
+        "rev": "efc85e42262cd0c9e1fdbf806c25cb0be6de115c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-mini",
+        "repo": "mini.icons",
         "type": "github"
       }
     },
@@ -497,18 +513,19 @@
         "fzf-lua": "fzf-lua",
         "gen-luarc": "gen-luarc",
         "leap": "leap",
-        "mini-nvim": "mini-nvim",
+        "mini-hipatterns": "mini-hipatterns",
+        "mini-icons": "mini-icons",
         "nixpkgs": [
           "nixpkgs"
         ],
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1768701376,
-        "narHash": "sha256-D8/RuYo+pU3xSE7oChGpgD7YX+xS/v7OjNLk5n7SuQI=",
+        "lastModified": 1768741782,
+        "narHash": "sha256-zseFKbvy7z+LfKzkayfs78DgiszRE6ZR0TG2nEgbqeE=",
         "ref": "refs/heads/main",
-        "rev": "f582a6ff5981c9390cf04976761acf7f7057feb3",
-        "revCount": 81,
+        "rev": "5babcba746a82258f9fbc9ae64d1b7472f08be2e",
+        "revCount": 83,
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
       },
