@@ -36,6 +36,7 @@ let
 
     bind f run-shell "tmux neww ${tmuxSessioniser}/bin/tmux-sessioniser"
     bind g display-popup -w 85% -h 85% -E ${pkgs.lazygit}/bin/lazygit
+    bind t display-popup -w 75% -h 75% -E ${shellBin}
 
     bind D detach
     bind d switch-client -t main
