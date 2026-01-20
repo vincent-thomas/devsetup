@@ -307,22 +307,6 @@
         "type": "github"
       }
     },
-    "mini-hipatterns": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1762511194,
-        "narHash": "sha256-FkpBYOKzDG3f3DttViAp7V9pj6EUppYKbZBah8L8Agk=",
-        "owner": "nvim-mini",
-        "repo": "mini.hipatterns",
-        "rev": "add8d8abad602787377ec5d81f6b248605828e0f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-mini",
-        "repo": "mini.hipatterns",
-        "type": "github"
-      }
-    },
     "mini-icons": {
       "flake": false,
       "locked": {
@@ -513,7 +497,6 @@
         "fzf-lua": "fzf-lua",
         "gen-luarc": "gen-luarc",
         "leap": "leap",
-        "mini-hipatterns": "mini-hipatterns",
         "mini-icons": "mini-icons",
         "nixpkgs": [
           "nixpkgs"
@@ -521,11 +504,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1768835562,
-        "narHash": "sha256-j8XOhHcyeT8ryyGkMn/UWM0TkjX5tt46lHUnOf+aVTU=",
+        "lastModified": 1768922206,
+        "narHash": "sha256-S9rtCqoerEMjf26jce9o7pJmvWxWqF8aUnHLoU4qaMI=",
         "ref": "refs/heads/main",
-        "rev": "6eec8566678f65057895423bb009c69ed2d5ce27",
-        "revCount": 85,
+        "rev": "1e07251966da65cd8a4998be4678339c12494d1c",
+        "revCount": 86,
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
       },
