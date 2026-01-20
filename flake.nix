@@ -67,6 +67,7 @@
                 fd
                 direnv
                 starship
+                bacon
               ])
               ++ [
                 inputs.vt-nvim.packages.${system}.default
