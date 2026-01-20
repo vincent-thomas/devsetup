@@ -66,7 +66,6 @@
                 fzf
                 fd
                 direnv
-                starship
                 bacon
               ])
               ++ [

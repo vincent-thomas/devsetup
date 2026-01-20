@@ -3,8 +3,9 @@ export HISTFILESIZE=50000
 export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
-eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(direnv hook bash)"
 
 alias nix="nix -L"
+
+PS1='\[\e[38;5;183m\]\h\[\e[38;5;8m\] :: \[\e[38;5;14m\]\w\[\e[33m\] \$ \[\e[0m\]'
