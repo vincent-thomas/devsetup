@@ -18,6 +18,7 @@ let
 
     eval $(ssh-agent) > /dev/null
     ssh-add "${secrets.github_ssh_key.path}" 2> /dev/null
+    ssh-add "${secrets.work_devbox_ssh_key.path}" 2> /dev/null
 
     alias nix="nix -L"
     alias rbd-image-clear="rbd list | xargs -n 1 -d '\n' rbd rm"

@@ -50,11 +50,16 @@
           inherit keyCommand;
           secrets = {
             github_ssh_key = {
-              file = ./secrets/github_ssh_key;
+              file = ./secrets/github_ssh_key.pem;
               mode = "0600";
             };
             main_ssh_key = {
-              file = ./secrets/main_ssh_key;
+              file = ./secrets/main_ssh_key.pem;
+              mode = "0600";
+            };
+
+            work_devbox_ssh_key = {
+              file = ./secrets/work_devbox_ssh_key.pem;
               mode = "0600";
             };
           };
@@ -113,7 +118,9 @@
             default = pkgs.writeShellApplication {
               name = "vt-devenv";
               runtimeInputs = [ tmux ];
-              text = "exec tmux new-session -Asmain";
+              text = ''
+                exec tmux new-session -Asmain
+              '';
             };
 
           };
