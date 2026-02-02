@@ -40,6 +40,25 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
+
+        secretsLib = import ./secrets.nix { inherit pkgs; };
+
+        # Command that outputs age private key - customize this
+        keyCommand = "op item get jsjutcwq77jcm4qvjn6tg3nxly --field password --reveal";
+
+        mySecrets = secretsLib.mkSecretsActivation {
+          inherit keyCommand;
+          secrets = {
+            github_ssh_key = {
+              file = ./secrets/github_ssh_key;
+              mode = "0600";
+            };
+            main_ssh_key = {
+              file = ./secrets/main_ssh_key;
+              mode = "0600";
+            };
+          };
+        };
       in
       rec {
         apps.default = {
@@ -59,42 +78,52 @@
               "rust-src"
             ];
 
-            runtimeInputs =
-              (with pkgs; [
-                jq
-                curl
-                fzf
-                fd
-                direnv
-                bacon
-              ])
-              ++ [
-                inputs.vt-nvim.packages.${system}.default
-                git
-                rustPkgs
-              ];
-
             bash = import ./bash {
-              inherit pkgs runtimeInputs;
-              configFile = ./bash/bashrc;
+              inherit pkgs;
+              runtimeInputs =
+                (with pkgs; [
+                  jq
+                  curl
+                  fzf
+                  fd
+                  direnv
+                  bacon
+                ])
+                ++ [
+                  inputs.vt-nvim.packages.${system}.default
+                  git
+                  rustPkgs
+                ];
+              secrets = mySecrets.secrets;
             };
 
             tmux = import ./tmux {
               inherit pkgs;
               shellBin = "${bash}/bin/bash";
             };
+
           in
           {
-            inherit tmux bash git;
+            inherit
+              tmux
+              bash
+              git
+              ;
+            secrets = mySecrets.activate;
             default = pkgs.writeShellApplication {
               name = "vt-devenv";
               runtimeInputs = [ tmux ];
-              text = ''
-                exec tmux new-session -Asmain
-              '';
+              text = "exec tmux new-session -Asmain";
             };
 
           };
+
+        devShells.default = pkgs.mkShell {
+          packages = [
+            (secretsLib.mkSopsWrapper { inherit keyCommand; })
+            pkgs.age
+          ];
+        };
       }
     );
 }

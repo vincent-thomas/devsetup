@@ -1,2 +1,6 @@
 .direnv
 result
+
+# SOPS - ignore decrypted secrets
+secrets/**/*.dec.*
+secrets/**/*-decrypted.*

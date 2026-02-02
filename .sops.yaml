@@ -1,0 +1,8 @@
+keys:
+    - &vt-mbp age134pkutq8x25ulvu4tg48vc709shl9dyvkj09708up73zsyf3v3mqlwwnf8
+
+creation_rules:
+  - path_regex: secrets/.*
+    key_groups:
+      - age:
+          - *vt-mbp
