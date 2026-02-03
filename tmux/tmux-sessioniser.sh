@@ -13,14 +13,14 @@ if [[ $# -eq 1 ]]; then
 else
     # Get depth 1 directories (regular repos)
     regular_dirs=$(fd . "${DIRS[@]}" --full-path --max-depth 1)
-    
+
     # Get depth 2 directories that are worktrees (contain .git file)
-    worktrees=$(fd . "${DIRS[@]}" --full-path --min-depth 2 --max-depth 2 | while read dir; do
+    worktrees=$(fd . "${DIRS[@]}" --full-path --min-depth 2 --max-depth 2 | while read -r dir; do
         if [[ -f "$dir/.git" ]]; then
             echo "$dir"
         fi
     done)
-    
+
     selected=$(echo -e "${regular_dirs}\n${worktrees}" | grep -v "^$" | fzf)
 fi
 
