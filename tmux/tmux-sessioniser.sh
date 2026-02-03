@@ -11,14 +11,33 @@ DIRS=(
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . "${DIRS[@]}" --full-path --max-depth 1 | fzf)
+    # Get depth 1 directories (regular repos)
+    regular_dirs=$(fd . "${DIRS[@]}" --full-path --max-depth 1)
+    
+    # Get depth 2 directories that are worktrees (contain .git file)
+    worktrees=$(fd . "${DIRS[@]}" --full-path --min-depth 2 --max-depth 2 | while read dir; do
+        if [[ -f "$dir/.git" ]]; then
+            echo "$dir"
+        fi
+    done)
+    
+    selected=$(echo -e "${regular_dirs}\n${worktrees}" | grep -v "^$" | fzf)
 fi
 
 if [[ -z "$selected" ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+# Get session name: for worktrees, include repo and branch; for regular repos, just repo name
+if [[ -f "$selected/.git" ]]; then
+    # This is a worktree - get branch name and repo name
+    repo_name=$(basename "$(dirname "$selected")")
+    branch_name=$(basename "$selected" | tr . _)
+    selected_name="${repo_name}_${branch_name}"
+else
+    # Regular repo
+    selected_name=$(basename "$selected" | tr . _)
+fi
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z "$tmux_running" ]]; then
