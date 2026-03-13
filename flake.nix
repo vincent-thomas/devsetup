@@ -93,6 +93,8 @@
                   fd
                   direnv
                   bacon
+                  cargo-nextest
+                  gh
                 ])
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
