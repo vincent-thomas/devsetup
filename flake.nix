@@ -77,11 +77,10 @@
               configFile = ./git/gitconfig;
             };
 
-            rustPkgs = fenix.packages.${system}.stable.withComponents [
-              "cargo"
-              "rustc"
-              "rust-src"
-            ];
+            rustPkgs = fenix.packages.${system}.fromToolchainFile {
+              file = ./rust-toolchain.toml;
+              sha256 = "sha256-zC8E38iDVJ1oPIzCqTk/Ujo9+9kx9dXq7wAwPMpkpg0=";
+            };
 
             bash = import ./bash {
               inherit pkgs;
