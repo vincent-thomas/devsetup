@@ -17,6 +17,7 @@ let
     set -g default-shell "${shellBin}"
 
     set -g status-style "bg=default"
+    set -g status-left-length 100
 
     set -g base-index 1
     set -g pane-base-index 1
@@ -33,6 +34,8 @@ let
     setw -g clock-mode-style 24
     set -g escape-time 500
     set -g history-limit 5000
+    # so that 'clear' actually clears.
+    set -g scroll-on-clear off
 
     bind f run-shell "tmux neww ${tmuxSessioniser}/bin/tmux-sessioniser"
     bind g display-popup -w 85% -h 85% -E ${pkgs.lazygit}/bin/lazygit

@@ -22,8 +22,9 @@ let
 
     alias nix="nix -L"
     alias rbd-image-clear="rbd list | xargs -n 1 -d '\n' rbd rm"
-    alias docker-container-clear="docker rm $(docker ps -a -q)"
+    alias docker-container-clear="docker container ls --format json | jq '.ID' -r | xargs -n 1 docker rm"
     alias docker-image-clear="docker image ls --format json | jq ".ID" -r | xargs -n 1 docker rmi"
+    alias c="cargo"
 
     PS1='\[\e[38;5;183m\]\h\[\e[38;5;8m\] :: \[\e[38;5;14m\]\w\[\e[33m\] \$ \[\e[0m\]'
 

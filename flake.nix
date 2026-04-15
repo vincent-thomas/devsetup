@@ -82,6 +82,35 @@
               sha256 = "sha256-zC8E38iDVJ1oPIzCqTk/Ujo9+9kx9dXq7wAwPMpkpg0=";
             };
 
+            rustNightlyPkgs = pkgs.rust-bin.nightly.latest.default.override {
+              extensions = [
+                "rust-src"
+                "rustfmt"
+                "clippy"
+                "miri"
+              ];
+              targets = [
+                "x86_64-unknown-linux-musl"
+                "x86_64-unknown-linux-gnu"
+              ];
+            };
+
+            cargo-nightly = pkgs.writeShellApplication {
+              name = "cargo-nightly";
+              runtimeInputs = [ rustNightlyPkgs ];
+              text = ''
+                exec cargo "$@"
+              '';
+            };
+
+            rustc-nightly = pkgs.writeShellApplication {
+              name = "rustc-nightly";
+              runtimeInputs = [ rustNightlyPkgs ];
+              text = ''
+                exec rustc "$@"
+              '';
+            };
+
             bash = import ./bash {
               inherit pkgs;
               runtimeInputs =
@@ -94,11 +123,16 @@
                   bacon
                   cargo-nextest
                   gh
+
+                  # for rustc target suffix "-musl"
+                  pkgsStatic.stdenv.cc
                 ])
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
                   git
                   rustPkgs
+                  cargo-nightly
+                  rustc-nightly
                 ];
               secrets = mySecrets.secrets;
             };
@@ -114,6 +148,8 @@
               tmux
               bash
               git
+              cargo-nightly
+              rustc-nightly
               ;
             secrets = mySecrets.activate;
             default = pkgs.writeShellApplication {
