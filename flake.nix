@@ -77,9 +77,16 @@
               configFile = ./git/gitconfig;
             };
 
-            rustPkgs = fenix.packages.${system}.fromToolchainFile {
-              file = ./rust-toolchain.toml;
-              sha256 = "sha256-zC8E38iDVJ1oPIzCqTk/Ujo9+9kx9dXq7wAwPMpkpg0=";
+            rustStablePkgs = pkgs.rust-bin.stable.latest.default.override {
+              extensions = [
+                "rust-src"
+                "rustfmt"
+                "clippy"
+              ];
+              targets = [
+                "x86_64-unknown-linux-musl"
+                "x86_64-unknown-linux-gnu"
+              ];
             };
 
             rustNightlyPkgs = pkgs.rust-bin.nightly.latest.default.override {
@@ -95,19 +102,23 @@
               ];
             };
 
-            cargo-nightly = pkgs.writeShellApplication {
-              name = "cargo-nightly";
-              runtimeInputs = [ rustNightlyPkgs ];
+            cargo-stable = pkgs.writeShellApplication {
+              name = "cargo";
+              runtimeInputs = [
+                rustStablePkgs
+              ];
               text = ''
+                export CARGO_NET_GIT_FETCH_WITH_CLI=true
                 exec cargo "$@"
               '';
             };
 
-            rustc-nightly = pkgs.writeShellApplication {
-              name = "rustc-nightly";
+            cargo-nightly = pkgs.writeShellApplication {
+              name = "cargo-nightly";
               runtimeInputs = [ rustNightlyPkgs ];
               text = ''
-                exec rustc "$@"
+                export CARGO_NET_GIT_FETCH_WITH_CLI=true
+                exec cargo "$@"
               '';
             };
 
@@ -123,6 +134,7 @@
                   bacon
                   cargo-nextest
                   gh
+                  mdbook
 
                   # for rustc target suffix "-musl"
                   pkgsStatic.stdenv.cc
@@ -130,9 +142,9 @@
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
                   git
-                  rustPkgs
+                  rustStablePkgs
                   cargo-nightly
-                  rustc-nightly
+                  cargo-stable
                 ];
               secrets = mySecrets.secrets;
             };
@@ -144,13 +156,6 @@
 
           in
           {
-            inherit
-              tmux
-              bash
-              git
-              cargo-nightly
-              rustc-nightly
-              ;
             secrets = mySecrets.activate;
             default = pkgs.writeShellApplication {
               name = "vt-devenv";

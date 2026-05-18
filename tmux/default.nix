@@ -42,7 +42,7 @@ let
     bind t display-popup -w 75% -h 75% -E ${shellBin}
 
     bind D detach
-    bind d switch-client -t main
+    bind d if-shell "tmux has-session -t main 2>/dev/null" "switch-client -t main" "new-session -ds main \\; switch-client -t main"
 
     # Use Alt-vim keys without prefix key to switch panes
     bind -n M-h select-pane -L
