@@ -77,6 +77,8 @@
               configFile = ./git/gitconfig;
             };
 
+            cargoConfigFile = ./cargo/config.toml;
+
             rustStablePkgs = pkgs.rust-bin.stable.latest.default.override {
               extensions = [
                 "rust-src"
@@ -102,24 +104,20 @@
               ];
             };
 
-            cargo-stable = pkgs.writeShellApplication {
+            cargo-stable = import ./cargo {
+              inherit pkgs;
+              cargoBin = "${rustStablePkgs}/bin/cargo";
+              configFile = cargoConfigFile;
               name = "cargo";
-              runtimeInputs = [
-                rustStablePkgs
-              ];
-              text = ''
-                export CARGO_NET_GIT_FETCH_WITH_CLI=true
-                exec cargo "$@"
-              '';
+              toolchain = rustStablePkgs;
             };
 
-            cargo-nightly = pkgs.writeShellApplication {
+            cargo-nightly = import ./cargo {
+              inherit pkgs;
+              cargoBin = "${rustNightlyPkgs}/bin/cargo";
+              configFile = cargoConfigFile;
               name = "cargo-nightly";
-              runtimeInputs = [ rustNightlyPkgs ];
-              text = ''
-                export CARGO_NET_GIT_FETCH_WITH_CLI=true
-                exec cargo "$@"
-              '';
+              toolchain = rustNightlyPkgs;
             };
 
             bash = import ./bash {
