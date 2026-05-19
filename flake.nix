@@ -8,9 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
     vt-nvim.url = "git+https://codeberg.org/vtho/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -20,15 +17,9 @@
       self,
       fenix,
       nixpkgs,
-      rust-overlay,
       flake-utils,
       ...
     }:
-    let
-      overlays = [
-        (import rust-overlay)
-      ];
-    in
     {
       overlays.default = final: prev: {
         lio = self.packages.${final.system}.default;
@@ -37,9 +28,8 @@
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system overlays;
-        };
+        pkgs = import nixpkgs { inherit system; };
+        fenixPkgs = fenix.packages.${system};
 
         secretsLib = import ./secrets.nix { inherit pkgs; };
 
@@ -79,34 +69,68 @@
 
             cargoConfigFile = ./cargo/config.toml;
 
-            rustStablePkgs = pkgs.rust-bin.stable.latest.default.override {
-              extensions = [
+            rustTargets = [
+              "x86_64-unknown-linux-musl"
+              "x86_64-unknown-linux-gnu"
+            ];
+
+            rustStableSpec = {
+              channel = "1.94.0";
+              sha256 = "1vlqg3lypl5qbn25f47qg3irq2r3jm9fkgg6pqwxa0bfygg7g8da";
+            };
+
+            rustNightlySpec = {
+              channel = "nightly";
+              date = "2026-03-07";
+              sha256 = "1cr38gascmd6ywp4x7gh433c5fry5lsljf2sir4vpz9cqfkpw9fq";
+            };
+
+            mkRustToolchain =
+              {
+                name,
+                source,
+                toolchainSpec,
+                hostComponents,
+              }:
+              pkgs.symlinkJoin {
+                inherit name;
+                paths = [
+                  (source.withComponents hostComponents)
+                ]
+                ++ map (target: (fenixPkgs.targets.${target}.toolchainOf toolchainSpec)."rust-std") rustTargets;
+              };
+
+            rustStable = fenixPkgs.toolchainOf rustStableSpec;
+            rustNightly = fenixPkgs.toolchainOf rustNightlySpec;
+
+            rustStablePkgs = mkRustToolchain {
+              name = "rust-stable";
+              source = rustStable;
+              toolchainSpec = rustStableSpec;
+              hostComponents = [
+                "rustc"
                 "rust-src"
                 "rustfmt"
                 "clippy"
               ];
-              targets = [
-                "x86_64-unknown-linux-musl"
-                "x86_64-unknown-linux-gnu"
-              ];
             };
 
-            rustNightlyPkgs = pkgs.rust-bin.nightly.latest.default.override {
-              extensions = [
+            rustNightlyPkgs = mkRustToolchain {
+              name = "rust-nightly";
+              source = rustNightly;
+              toolchainSpec = rustNightlySpec;
+              hostComponents = [
+                "rustc"
                 "rust-src"
                 "rustfmt"
                 "clippy"
                 "miri"
               ];
-              targets = [
-                "x86_64-unknown-linux-musl"
-                "x86_64-unknown-linux-gnu"
-              ];
             };
 
             cargo-stable = import ./cargo {
               inherit pkgs;
-              cargoBin = "${rustStablePkgs}/bin/cargo";
+              cargoBin = "${rustStable.cargo}/bin/cargo";
               configFile = cargoConfigFile;
               name = "cargo";
               toolchain = rustStablePkgs;
@@ -114,7 +138,7 @@
 
             cargo-nightly = import ./cargo {
               inherit pkgs;
-              cargoBin = "${rustNightlyPkgs}/bin/cargo";
+              cargoBin = "${rustNightly.cargo}/bin/cargo";
               configFile = cargoConfigFile;
               name = "cargo-nightly";
               toolchain = rustNightlyPkgs;
@@ -140,9 +164,9 @@
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
                   git
-                  rustStablePkgs
-                  cargo-nightly
                   cargo-stable
+                  cargo-nightly
+                  rustStablePkgs
                 ];
               secrets = mySecrets.secrets;
             };
