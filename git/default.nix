@@ -1,5 +1,8 @@
-{ pkgs, configFile }:
+{ pkgs, config }:
 
+let
+  configFile = pkgs.writeText "gitconfig" config;
+in
 pkgs.stdenv.mkDerivation {
   pname = "vt-git";
   version = pkgs.git.version;

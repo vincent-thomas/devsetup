@@ -1,7 +1,6 @@
 {
   pkgs,
   runtimeInputs ? [ ],
-  secrets ? { },
 }:
 
 let
@@ -15,10 +14,6 @@ let
 
     eval "$(fzf --bash)"
     eval "$(direnv hook bash)"
-
-    eval $(ssh-agent) > /dev/null
-    ssh-add "${secrets.github_ssh_key.path}" 2> /dev/null
-    ssh-add "${secrets.work_devbox_ssh_key.path}" 2> /dev/null
 
     alias nix="nix -L"
     alias rbd-image-clear="rbd list | xargs -n 1 -d '\n' rbd rm"
@@ -46,6 +41,6 @@ pkgs.stdenv.mkDerivation {
 
     makeWrapper ${pkgs.bash}/bin/bash $out/bin/bash \
       --add-flags "--rcfile $out/config/.bashrc" \
-      --prefix PATH : "${runtimePath}"
+      --prefix PATH : "${runtimePath}:/usr/local/bin"
   '';
 }

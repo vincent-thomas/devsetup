@@ -19,6 +19,7 @@
 
 [core]
   askpass = ""
+  sshCommand = "@ssh@/bin/ssh"
 
 [user]
   email = "vincent@v-thomas.com"

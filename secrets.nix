@@ -7,10 +7,7 @@ let
   # Usage:
   #   secretsConfig = mkSecretsActivation {
   #     keyCommand = "op read op://vault/age-key/key";
-  #     secrets = {
-  #       api_key = { file = ./secrets/api_key; };
-  #       db_password = { file = ./secrets/db_password; mode = "0600"; };
-  #     };
+  #     secretsDir = ./secrets;
   #   };
   #
   # Returns: {
@@ -20,13 +17,16 @@ let
   # }
   mkSecretsActivation =
     {
-      secrets,
       keyCommand,
+      secretsDir ? ./secrets,
+      # Runtime path used only to copy source file modes. Relative paths are
+      # resolved from the directory where `nix run .#secrets` is invoked.
+      sourceSecretsPath ? "./secrets",
       secretsPath ? "/etc/vt/secrets",
-      defaultMode ? "0400",
     }:
     let
-      secretNames = builtins.attrNames secrets;
+      secretFiles = builtins.attrNames (pkgs.lib.filterAttrs (_: type: type == "regular") (builtins.readDir secretsDir));
+      secretNames = secretFiles;
 
       activate = pkgs.writeShellApplication {
         name = "sops-activate";
@@ -44,18 +44,19 @@ let
 
           export SOPS_AGE_KEY_CMD='${keyCommand}'
 
+          source_mode() {
+            if stat -f %Lp "$1" >/dev/null 2>&1; then
+              stat -f %Lp "$1"
+            else
+              stat -c %a "$1"
+            fi
+          }
+
           ${builtins.concatStringsSep "\n" (
-            map (
-              name:
-              let
-                s = secrets.${name};
-                mode = s.mode or defaultMode;
-              in
-              ''
-                sops --decrypt ${s.file} > "$SECRETS_PATH/${name}"
-                chmod ${mode} "$SECRETS_PATH/${name}"
-              ''
-            ) secretNames
+            map (file: ''
+              sops --decrypt ${secretsDir}/${file} > "$SECRETS_PATH/${file}"
+              chmod "$(source_mode '${sourceSecretsPath}/${file}')" "$SECRETS_PATH/${file}"
+            '') secretFiles
           )}
         '';
       };

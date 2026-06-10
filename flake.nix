@@ -10,6 +10,9 @@
 
     vt-nvim.url = "git+https://codeberg.org/vtho/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    vt-pi.url = "github:vincent-thomas/vt-pi";
+    vt-pi.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -38,22 +41,9 @@
 
         mySecrets = secretsLib.mkSecretsActivation {
           inherit keyCommand;
-          secrets = {
-            github_ssh_key = {
-              file = ./secrets/github_ssh_key.pem;
-              mode = "0600";
-            };
-            main_ssh_key = {
-              file = ./secrets/main_ssh_key.pem;
-              mode = "0600";
-            };
-
-            work_devbox_ssh_key = {
-              file = ./secrets/work_devbox_ssh_key.pem;
-              mode = "0600";
-            };
-          };
+          secretsDir = ./secrets;
         };
+        mySops = secretsLib.mkSopsWrapper { inherit keyCommand; };
       in
       rec {
         apps.default = {
@@ -62,9 +52,17 @@
         };
         packages =
           let
+            ssh = import ./ssh {
+              inherit pkgs;
+              config = import ./ssh/config.nix { secrets = mySecrets.secrets; };
+            };
+
             git = import ./git {
               inherit pkgs;
-              configFile = ./git/gitconfig;
+              config = import ./git/config.nix {
+                inherit ssh;
+                secrets = mySecrets.secrets;
+              };
             };
 
             cargoConfigFile = ./cargo/config.toml;
@@ -112,6 +110,7 @@
                 "rust-src"
                 "rustfmt"
                 "clippy"
+                "rust-analyzer"
               ];
             };
 
@@ -157,18 +156,20 @@
                   cargo-nextest
                   gh
                   mdbook
+                  bun
 
                   # for rustc target suffix "-musl"
                   pkgsStatic.stdenv.cc
                 ])
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
+                  inputs.vt-pi.packages.${system}.default
                   git
+                  ssh
                   cargo-stable
                   cargo-nightly
                   rustStablePkgs
                 ];
-              secrets = mySecrets.secrets;
             };
 
             tmux = import ./tmux {
@@ -191,7 +192,7 @@
 
         devShells.default = pkgs.mkShell {
           packages = [
-            (secretsLib.mkSopsWrapper { inherit keyCommand; })
+            mySops
             pkgs.age
           ];
         };
