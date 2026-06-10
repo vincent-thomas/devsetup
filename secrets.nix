@@ -45,18 +45,10 @@ let
             export SOPS_AGE_KEY_CMD='${keyCommand}'
           fi
 
-          source_mode() {
-            if stat -f %Lp "$1" >/dev/null 2>&1; then
-              stat -f %Lp "$1"
-            else
-              stat -c %a "$1"
-            fi
-          }
-
           ${builtins.concatStringsSep "\n" (
             map (file: ''
               sops --decrypt "$SECRETS_SOURCE/${file}" > "$SECRETS_PATH/${file}"
-              chmod "$(source_mode "$SECRETS_SOURCE/${file}")" "$SECRETS_PATH/${file}"
+              chmod '${defaultMode}' "$SECRETS_PATH/${file}"
             '') secretFiles
           )}
         '';
