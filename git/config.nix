@@ -26,5 +26,5 @@
   [user]
     email = vincent@v-thomas.com
     name = Vincent Thomas
-    signingkey = ${secrets."main_ssh_key.pem".path}
+    signingkey = ${secrets."github_ssh_key.pem".path}
 ''
