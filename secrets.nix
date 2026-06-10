@@ -19,10 +19,8 @@ let
     {
       keyCommand,
       secretsDir ? ./secrets,
-      # Runtime path used only to copy source file modes. Relative paths are
-      # resolved from the directory where `nix run .#secrets` is invoked.
-      sourceSecretsPath ? "./secrets",
       secretsPath ? "/etc/vt/secrets",
+      defaultMode ? "0600",
     }:
     let
       secretFiles = builtins.attrNames (pkgs.lib.filterAttrs (_: type: type == "regular") (builtins.readDir secretsDir));
@@ -36,13 +34,16 @@ let
         ];
         text = ''
           SECRETS_PATH="${secretsPath}"
+          SECRETS_SOURCE="${secretsDir}"
 
           sudo rm -rf "$SECRETS_PATH"
           sudo mkdir -p "$SECRETS_PATH"
           sudo chown "$USER" "$SECRETS_PATH"
           chmod 0700 "$SECRETS_PATH"
 
-          export SOPS_AGE_KEY_CMD='${keyCommand}'
+          if [ -z "''${SOPS_AGE_KEY_FILE:-}" ] && [ -z "''${SOPS_AGE_KEY_CMD:-}" ]; then
+            export SOPS_AGE_KEY_CMD='${keyCommand}'
+          fi
 
           source_mode() {
             if stat -f %Lp "$1" >/dev/null 2>&1; then
@@ -54,8 +55,8 @@ let
 
           ${builtins.concatStringsSep "\n" (
             map (file: ''
-              sops --decrypt ${secretsDir}/${file} > "$SECRETS_PATH/${file}"
-              chmod "$(source_mode '${sourceSecretsPath}/${file}')" "$SECRETS_PATH/${file}"
+              sops --decrypt "$SECRETS_SOURCE/${file}" > "$SECRETS_PATH/${file}"
+              chmod "$(source_mode "$SECRETS_SOURCE/${file}")" "$SECRETS_PATH/${file}"
             '') secretFiles
           )}
         '';
