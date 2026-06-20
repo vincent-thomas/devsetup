@@ -523,11 +523,11 @@
         "pi-mono": "pi-mono"
       },
       "locked": {
-        "lastModified": 1781984822,
-        "narHash": "sha256-YpXKjlCXvwf2rzqNr7hUAIF+cEdiYZv+EnT2nAM8RPw=",
+        "lastModified": 1781985040,
+        "narHash": "sha256-WEB20nq/QleLLY7wklPgbQSWo8QQGPglNiygSzFV2DE=",
         "owner": "vincent-thomas",
         "repo": "vt-pi",
-        "rev": "9f032a6d457ebf8cbd6aa2c8a8bb171f0393d99f",
+        "rev": "6287179ee0f0667f3824fa05bad51373d31850c1",
         "type": "github"
       },
       "original": {
