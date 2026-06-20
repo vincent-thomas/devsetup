@@ -100,11 +100,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1781260166,
-        "narHash": "sha256-vKKEJke8kswPWPu/J/giMA92VFrVNWQn7x6TwRmJHBo=",
+        "lastModified": 1781947848,
+        "narHash": "sha256-IergMRaafR+NBhWxgHuSRfsVKKnB7mSiYAsW728RYJM=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "a257e130673b0a1caa7137bf0896169910efdd5a",
+        "rev": "ab90d0629159f412313b6bde02bdc346bd9c8b3b",
         "type": "github"
       },
       "original": {
@@ -339,11 +339,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1781229721,
-        "narHash": "sha256-ORvqDbb/LYxiJljGIejapjkc/kJbVote2N1WSb9W45I=",
+        "lastModified": 1781607440,
+        "narHash": "sha256-rxO+uc/KFbSJp+pgyXRuAX6QlG9hJdnt0BXpEQRXY+U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "173d0ad7a974f8543a9ab01d2271b2e290341b33",
+        "rev": "3e41b24abd260e8f71dbe2f5737d24122f972158",
         "type": "github"
       },
       "original": {
@@ -400,11 +400,11 @@
     "pi-mono": {
       "flake": false,
       "locked": {
-        "lastModified": 1781007788,
-        "narHash": "sha256-v/tDZHe7ZSOyjirIBC7T0SOMgHG3X0J+FOlnm4XMS/Y=",
+        "lastModified": 1781983922,
+        "narHash": "sha256-I7W9dviNlins5RoVSkRBCSXCUth/chicn2g2AwFDB4Q=",
         "owner": "earendil-works",
         "repo": "pi",
-        "rev": "c5582102f51b143fadc05180e0f8aed050e923b3",
+        "rev": "500b568b04cc54109480920ab391e76e525339c0",
         "type": "github"
       },
       "original": {
@@ -425,11 +425,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1781193851,
-        "narHash": "sha256-Pz4G9dV3Cy9L2Gtl8dMrHlwPa8Oy+vE8NIXmd2b6ZVo=",
+        "lastModified": 1781933682,
+        "narHash": "sha256-ing9gva28bsg0g0dws5/gir/23NoyCX5wzvrRSQDI2I=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "dc0ac97934098a20224a4638f39ae88fa97e9b88",
+        "rev": "501826b6fb2b87d16fb35ffceb3b01f885517320",
         "type": "github"
       },
       "original": {
@@ -501,11 +501,11 @@
         "oil": "oil"
       },
       "locked": {
-        "lastModified": 1779290150,
-        "narHash": "sha256-KQrxwdhVNHTE7+XJ4yY2a30LBQxVIvvL19otiu+QZZc=",
+        "lastModified": 1781709856,
+        "narHash": "sha256-lnA8EcJcL467xRaANiEFCeK7vmApbMgWsRvXYCg6778=",
         "ref": "refs/heads/main",
-        "rev": "96c32f64fc2b61ca87f9c33e955e5b6754d34d4b",
-        "revCount": 92,
+        "rev": "55192caf07b63bbeda450b42629a9c59ffb04ba9",
+        "revCount": 93,
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
       },
@@ -523,11 +523,11 @@
         "pi-mono": "pi-mono"
       },
       "locked": {
-        "lastModified": 1781809389,
-        "narHash": "sha256-PsKPuqwWifhhzLArUn17IXik6mSwd+2+7S6K+bEo0dQ=",
+        "lastModified": 1781984822,
+        "narHash": "sha256-YpXKjlCXvwf2rzqNr7hUAIF+cEdiYZv+EnT2nAM8RPw=",
         "owner": "vincent-thomas",
         "repo": "vt-pi",
-        "rev": "22113107c8922d1a97ad0d45417c63389de6a8ee",
+        "rev": "9f032a6d457ebf8cbd6aa2c8a8bb171f0393d99f",
         "type": "github"
       },
       "original": {
