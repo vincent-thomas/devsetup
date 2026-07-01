@@ -100,11 +100,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1781947848,
-        "narHash": "sha256-IergMRaafR+NBhWxgHuSRfsVKKnB7mSiYAsW728RYJM=",
+        "lastModified": 1782813643,
+        "narHash": "sha256-+Y7z6oWSTJSKIhxPw7YKHOcIgoX/1PWgpRMZMj4AHlw=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "ab90d0629159f412313b6bde02bdc346bd9c8b3b",
+        "rev": "df161b9bd5f8ff444b2c213cd45410b7da6da602",
         "type": "github"
       },
       "original": {
@@ -339,11 +339,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1781607440,
-        "narHash": "sha256-rxO+uc/KFbSJp+pgyXRuAX6QlG9hJdnt0BXpEQRXY+U=",
+        "lastModified": 1782821651,
+        "narHash": "sha256-D5jO0ME1lA9bDHnd5kVawBwItG/N4oZr3FlXmMzLec8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3e41b24abd260e8f71dbe2f5737d24122f972158",
+        "rev": "e52c192be9d7b2c4bd4aed326c8731b35f8bb75c",
         "type": "github"
       },
       "original": {
@@ -400,11 +400,11 @@
     "pi-mono": {
       "flake": false,
       "locked": {
-        "lastModified": 1781983922,
-        "narHash": "sha256-I7W9dviNlins5RoVSkRBCSXCUth/chicn2g2AwFDB4Q=",
+        "lastModified": 1782477915,
+        "narHash": "sha256-4MMU5tnqk4qdpTN8HvTZulZLs5bQXe7Sr7R34tMAyrw=",
         "owner": "earendil-works",
         "repo": "pi",
-        "rev": "500b568b04cc54109480920ab391e76e525339c0",
+        "rev": "622eca76089f9c3b1af358f8c7cfa7937fbe5b0a",
         "type": "github"
       },
       "original": {
@@ -425,11 +425,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1781933682,
-        "narHash": "sha256-ing9gva28bsg0g0dws5/gir/23NoyCX5wzvrRSQDI2I=",
+        "lastModified": 1782776471,
+        "narHash": "sha256-/dDPf8xr1qlkNyo7L7E3rAPRoabyF0t5ymVOEf+5bks=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "501826b6fb2b87d16fb35ffceb3b01f885517320",
+        "rev": "c2a5273d39654d67b9ba952d64278ed40d35433d",
         "type": "github"
       },
       "original": {
@@ -523,11 +523,11 @@
         "pi-mono": "pi-mono"
       },
       "locked": {
-        "lastModified": 1781985040,
-        "narHash": "sha256-WEB20nq/QleLLY7wklPgbQSWo8QQGPglNiygSzFV2DE=",
+        "lastModified": 1782842030,
+        "narHash": "sha256-sEaV7RYSrRqPp6uM3yQp7Pxh4L/5lwW/BocR7uJ4P1M=",
         "owner": "vincent-thomas",
         "repo": "vt-pi",
-        "rev": "6287179ee0f0667f3824fa05bad51373d31850c1",
+        "rev": "afdaab4141342a21791089c2343bbd0893d41e8a",
         "type": "github"
       },
       "original": {
