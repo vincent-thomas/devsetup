@@ -400,11 +400,11 @@
     "pi-mono": {
       "flake": false,
       "locked": {
-        "lastModified": 1782477915,
-        "narHash": "sha256-4MMU5tnqk4qdpTN8HvTZulZLs5bQXe7Sr7R34tMAyrw=",
+        "lastModified": 1782939693,
+        "narHash": "sha256-yGIND+2K6dGGd4IHPMaUr0r1iW0ImOr+1aJ1iw2N0/8=",
         "owner": "earendil-works",
         "repo": "pi",
-        "rev": "622eca76089f9c3b1af358f8c7cfa7937fbe5b0a",
+        "rev": "e285e90fdbf9b05934ce90168156e2aa511d9a7c",
         "type": "github"
       },
       "original": {
@@ -523,11 +523,11 @@
         "pi-mono": "pi-mono"
       },
       "locked": {
-        "lastModified": 1782928568,
-        "narHash": "sha256-wpkDznbHkZno1VgijabUHgi8spK/TcFXLeoEG3XGnQY=",
+        "lastModified": 1782947812,
+        "narHash": "sha256-4VsxioFDS9K9/DVA75Lv/dmXHrFqUtr64p7U+ZW9TqM=",
         "owner": "vincent-thomas",
         "repo": "vt-pi",
-        "rev": "abe9b2645663c7a3ce5a5dea206afe527a81993e",
+        "rev": "bcbecc92b88f5398a4dc4e5d691b891842988f2c",
         "type": "github"
       },
       "original": {
