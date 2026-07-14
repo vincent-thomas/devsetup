@@ -183,24 +183,6 @@
         "type": "github"
       }
     },
-    "flake-utils_3": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "fzf-lua": {
       "flake": false,
       "locked": {
@@ -397,29 +379,12 @@
         "type": "github"
       }
     },
-    "pi-mono": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782477915,
-        "narHash": "sha256-4MMU5tnqk4qdpTN8HvTZulZLs5bQXe7Sr7R34tMAyrw=",
-        "owner": "earendil-works",
-        "repo": "pi",
-        "rev": "622eca76089f9c3b1af358f8c7cfa7937fbe5b0a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "earendil-works",
-        "repo": "pi",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "fenix": "fenix",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "vt-nvim": "vt-nvim",
-        "vt-pi": "vt-pi"
+        "vt-nvim": "vt-nvim"
       }
     },
     "rust-analyzer-src": {
@@ -469,21 +434,6 @@
         "type": "github"
       }
     },
-    "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "vt-nvim": {
       "inputs": {
         "blink-cmp": "blink-cmp",
@@ -512,28 +462,6 @@
       "original": {
         "type": "git",
         "url": "https://codeberg.org/vtho/nvim"
-      }
-    },
-    "vt-pi": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pi-mono": "pi-mono"
-      },
-      "locked": {
-        "lastModified": 1782921836,
-        "narHash": "sha256-XzuiEJNif5WqwH3Pi2O1BQBrQSY0IF6I5Mu30oz5sDU=",
-        "owner": "vincent-thomas",
-        "repo": "vt-pi",
-        "rev": "b40a48e8350c2ef9ba8ce091a5ac9c4ba1f8844c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vincent-thomas",
-        "repo": "vt-pi",
-        "type": "github"
       }
     }
   },

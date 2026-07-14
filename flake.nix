@@ -11,8 +11,8 @@
     vt-nvim.url = "git+https://codeberg.org/vtho/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
 
-    vt-pi.url = "github:vincent-thomas/vt-pi";
-    vt-pi.inputs.nixpkgs.follows = "nixpkgs";
+    # vt-pi.url = "github:vincent-thomas/lord-of-the-diffs";
+    # vt-pi.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -163,7 +163,7 @@
                 ])
                 ++ [
                   inputs.vt-nvim.packages.${system}.default
-                  inputs.vt-pi.packages.${system}.default
+                  # inputs.vt-pi.packages.${system}.default
                   git
                   ssh
                   cargo-stable
