@@ -73,7 +73,7 @@
             ];
 
             rustStableSpec = {
-              channel = "1.94.0";
+              channel = "1.94.1";
               sha256 = "1vlqg3lypl5qbn25f47qg3irq2r3jm9fkgg6pqwxa0bfygg7g8da";
             };
 
