@@ -74,7 +74,7 @@
 
             rustStableSpec = {
               channel = "1.94.1";
-              sha256 = "1vlqg3lypl5qbn25f47qg3irq2r3jm9fkgg6pqwxa0bfygg7g8da";
+              sha256 = "03d6ck53qc00xzmdbx9iv7xksfjj7wwskhlc7il9sm43r3gh8byc";
             };
 
             rustNightlySpec = {
