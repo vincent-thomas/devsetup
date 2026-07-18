@@ -41,6 +41,6 @@ pkgs.stdenv.mkDerivation {
 
     makeWrapper ${pkgs.bash}/bin/bash $out/bin/bash \
       --add-flags "--rcfile $out/config/.bashrc" \
-      --prefix PATH : "${runtimePath}:/usr/local/bin"
+      --prefix PATH : "${runtimePath}:/usr/local/bin:~/.bun/bin"
   '';
 }
