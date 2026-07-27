@@ -14,8 +14,11 @@ The installer supports:
 
 - x86-64 Linux
 - ARM64 Linux
-- Intel macOS
 - Apple Silicon macOS
+
+Intel macOS is not supported because current Nixpkgs has ended support for
+`x86_64-darwin`. Using an obsolete package-set pin would not provide support
+equivalent to the maintained Linux and Apple Silicon targets.
 
 It installs Nix when necessary, then installs the `devsetup` profile into the
 current user's Nix profile and activates Bash, Git, and tmux configuration. Run

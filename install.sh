@@ -10,7 +10,7 @@ fail() {
 }
 
 case "$(uname -s):$(uname -m)" in
-  Linux:x86_64 | Linux:aarch64 | Linux:arm64 | Darwin:x86_64 | Darwin:arm64) ;;
+  Linux:x86_64 | Linux:aarch64 | Linux:arm64 | Darwin:arm64) ;;
   *) fail "unsupported platform: $(uname -s) $(uname -m)" ;;
 esac
 

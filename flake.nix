@@ -25,7 +25,11 @@
         devsetup = self.packages.${final.system}.devsetup;
       };
     }
-    // flake-utils.lib.eachDefaultSystem (
+    // flake-utils.lib.eachSystem [
+      "x86_64-linux"
+      "aarch64-linux"
+      "aarch64-darwin"
+    ] (
       system:
       let
         pkgs = import nixpkgs { inherit system; };
