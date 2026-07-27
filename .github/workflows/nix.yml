@@ -6,10 +6,21 @@ on:
 
 jobs:
   check-and-build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+          - macos-15
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate installer syntax
+        run: bash -n install.sh
 
       - name: Install Nix
         uses: cachix/install-nix-action@v31
@@ -20,5 +31,5 @@ jobs:
       - name: Check flake
         run: nix flake check -L
 
-      - name: Build default package
-        run: nix build -L
+      - name: Build portable profile
+        run: nix build -L .#devsetup
