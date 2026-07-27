@@ -42,4 +42,8 @@ command -v nix >/dev/null 2>&1 ||
 nix profile remove devsetup >/dev/null 2>&1 || true
 nix profile install "${flake}#devsetup"
 
-printf '\n%s\n' 'devsetup is installed. Start a new shell to use the tools.'
+[ -x "$HOME/.nix-profile/bin/devsetup" ] ||
+  fail "the devsetup profile was installed but its activation command is missing"
+"$HOME/.nix-profile/bin/devsetup" activate
+
+printf '\n%s\n' 'devsetup is installed. Start a new Bash login shell to use the tools.'

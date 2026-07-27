@@ -18,8 +18,14 @@ The installer supports:
 - Apple Silicon macOS
 
 It installs Nix when necessary, then installs the `devsetup` profile into the
-current user's Nix profile. Run the same command again to update. The base
-profile does not require personal credentials or secrets.
+current user's Nix profile and activates Bash, Git, and tmux configuration. Run
+the same command again to update. The base profile does not require personal
+credentials or secrets.
+
+Bash is the only supported login shell. The installer does not run `chsh`
+because changing account state is host-specific and may require an interactive
+password. If needed, change the account shell using the mechanism provided by
+the host, then start a new Bash login shell.
 
 The initial Nix installation may request administrator access. Subsequent
 activations are user-scoped. Homebrew, `apt`, `dnf`, and `pacman` are not used.
@@ -32,6 +38,7 @@ DEVSETUP_FLAKE="path:$PWD" ./install.sh
 
 ## Current migration status
 
-The portable profile installs the common command-line and Rust toolchain. The
-legacy `nix run` tmux environment remains available while Git, shell, tmux, and
-secret configuration are migrated to user-scoped activation.
+The portable profile installs the common command-line and Rust toolchain and
+activates user-scoped Bash, Git, and tmux fragments. The legacy `nix run` tmux
+environment remains available while personal identity and secret profiles are
+migrated.

@@ -16,6 +16,7 @@ let
 in
 (with pkgs; [
   bacon
+  bash
   bun
   cargo-nextest
   curl
