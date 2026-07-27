@@ -3,11 +3,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Retained until the portable profile adopts the external Neovim package.
     vt-nvim.url = "git+https://codeberg.org/vtho/nvim";
     vt-nvim.inputs.nixpkgs.follows = "nixpkgs";
