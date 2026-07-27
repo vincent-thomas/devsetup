@@ -1,20 +1,7 @@
-{
-  inputs,
-  pkgs,
-  system,
-}:
+{ pkgs, ... }:
 
-let
-  rust = inputs.fenix.packages.${system}.stable.withComponents [
-    "cargo"
-    "clippy"
-    "rust-analyzer"
-    "rust-src"
-    "rustc"
-    "rustfmt"
-  ];
-in
-(with pkgs; [
+with pkgs;
+[
   bacon
   bash
   bun
@@ -29,6 +16,6 @@ in
   lazygit
   mdbook
   neovim
+  rustup
   tmux
-])
-++ [ rust ]
+]

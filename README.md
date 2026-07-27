@@ -2,7 +2,8 @@
 
 A reproducible user-scoped development environment for Linux and macOS.
 Packages come from one locked Nix flake, so the host distribution does not
-determine tool versions.
+determine tool versions. Rustup manages the Rust toolchain separately, with
+this repository selecting the current stable channel.
 
 ## Install or update
 
