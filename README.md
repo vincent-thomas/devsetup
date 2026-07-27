@@ -36,9 +36,13 @@ activations are user-scoped. Homebrew, `apt`, `dnf`, and `pacman` are not used.
 DEVSETUP_FLAKE="path:$PWD" ./install.sh
 ```
 
-## Current migration status
+## Management
 
-The portable profile installs the common command-line and Rust toolchain and
-activates user-scoped Bash, Git, and tmux fragments. The legacy `nix run` tmux
-environment remains available while personal identity and secret profiles are
-migrated.
+```sh
+devsetup activate
+devsetup doctor
+```
+
+`activate` reconciles user-scoped Bash, Git, and tmux fragments. `doctor`
+checks the login shell and core tool availability. Personal identity and
+secrets remain deliberately separate from the credential-free base profile.
