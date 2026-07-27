@@ -22,4 +22,7 @@
   rustup
   tmux
 ])
-++ [ inputs.vt-nvim.packages.${system}.default ]
+++ [
+  inputs.vt-nvim.packages.${system}.default
+  inputs.agents.packages.${system}.coder
+]
