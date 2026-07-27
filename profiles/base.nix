@@ -1,5 +1,3 @@
-{ ... }:
+args:
 
-{
-  imports = [ ../modules/packages.nix ];
-}
+import ../modules/packages.nix args

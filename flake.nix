@@ -52,6 +52,8 @@
         };
         packages =
           let
+            portablePackages = import ./profiles/base.nix { inherit inputs pkgs system; };
+
             ssh = import ./ssh {
               inherit pkgs;
               config = import ./ssh/config.nix { secrets = mySecrets.secrets; };
@@ -179,6 +181,10 @@
 
           in
           {
+            devsetup = pkgs.buildEnv {
+              name = "devsetup";
+              paths = portablePackages;
+            };
             secrets = mySecrets.activate;
             default = pkgs.writeShellApplication {
               name = "vt-devenv";
