@@ -3,7 +3,8 @@
 A reproducible user-scoped development environment for Linux and macOS.
 Packages come from one locked Nix flake, so the host distribution does not
 determine tool versions. Rustup manages the Rust toolchain separately, with
-this repository selecting the current stable channel.
+this repository selecting the current stable channel. The profile uses the
+custom `vt-nvim` package rather than the generic Nixpkgs Neovim build.
 
 ## Install or update
 

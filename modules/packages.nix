@@ -1,7 +1,11 @@
-{ pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
 
-with pkgs;
-[
+(with pkgs; [
   bacon
   bash
   bun
@@ -15,7 +19,7 @@ with pkgs;
   jq
   lazygit
   mdbook
-  neovim
   rustup
   tmux
-]
+])
+++ [ inputs.vt-nvim.packages.${system}.default ]
